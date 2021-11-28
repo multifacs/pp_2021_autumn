@@ -1,4 +1,4 @@
-// Copyright 2018 Nesterov Alexander
+// Copyright 2021 Vorobyova Anna
 #include <gtest/gtest.h>
 
 #include <gtest-mpi-listener.hpp>

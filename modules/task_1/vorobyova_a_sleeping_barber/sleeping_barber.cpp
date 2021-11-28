@@ -1,4 +1,4 @@
-// Copyright 2018 Nesterov Alexander
+// Copyright 2021 Vorobyova Anna
 #include "../../../modules/task_1/vorobyova_a_sleeping_barber/sleeping_barber.h"
 
 #include <mpi.h>
@@ -72,22 +72,27 @@ void Client::initiate() {
   fflush(stdout);
 }
 void Client::cut() {}
-int Line::check_line() {
-  if (0 == length) {
-    return -2;  // end of work day
+
+void Line(int id_proc, int input_length, int id_barber,
+          int input_num_proc_exec) {
+  Client* ClientLine;
+  int clients_num;
+  int max_clients;
+  bool barber_sleeping;
+  int length;
+  int num_proc_exec;
+
+  if (input_length > 0) {
+    length = input_length;
+    num_proc_exec = input_num_proc_exec - 2;
+    ClientLine = new Client[length];
+    clients_num = 0;
+    max_clients = length / 2;
+    barber_sleeping = false;
+  } else {
+    throw "length must be > 0";
   }
-  if (0 == clients_num) {
-    return 1;  // check the barber's actions
-  }
-  if (clients_num < max_clients) {
-    return 0;  //  stand in the line
-  }
-  if (clients_num >= max_clients) {
-    return -1;  //  nothing to do
-  }
-  return -1;
-}
-void Line::initiate() {
+
   // 1.communication with the barber
   // 2.main loop
   printf(
@@ -95,6 +100,7 @@ void Line::initiate() {
       "%d\n",
       num_proc_exec, max_clients);
   fflush(stdout);
+
   MPI_Status status;
   Message message;
   //
@@ -110,7 +116,17 @@ void Line::initiate() {
     // commands generated to customers.
     switch (message.command) {
       case 1: {
-        message.command = check_line();
+        if (0 == length) {
+          message.command = -2;  // end of work day
+        } else if (0 == clients_num) {
+          message.command = 1;  // check the barber's actions
+        } else if (clients_num < max_clients) {
+          message.command = 0;  //  stand in the line
+        } else if (clients_num >= max_clients) {
+          message.command = -1;  //  nothing to do
+        } else {
+          message.command = -1;
+        }
         if (-2 == message.command) {
           num_proc_exec--;
         }
@@ -170,7 +186,7 @@ void Line::initiate() {
   printf("[L] finished its work\n");
   fflush(stdout);
 }
-void Barber::initiate() {
+void Barber(int id_proc, int id_line) {
   Client CurrentClient;
   MPI_Status status;
   Message message;
@@ -219,11 +235,9 @@ void execute(int length) {
   if (num_proc <= 2) {
     throw "Not enough processes";
   } else if (id_proc == 0) {
-    Barber barber(0, 1);
-    barber.initiate();
+    Barber(0, 1);
   } else if (id_proc == 1) {
-    Line line(1, length, 0, num_proc);
-    line.initiate();
+    Line(1, length, 0, num_proc);
   } else {
     Client client(id_proc, 1, 0);
     client.initiate();
