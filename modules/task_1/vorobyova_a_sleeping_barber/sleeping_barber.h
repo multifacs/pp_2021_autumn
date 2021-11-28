@@ -2,6 +2,7 @@
 #ifndef MODULES_TASK_1_VOROBYOVA_A_SLEEPING_BARBER_SLEEPING_BARBER_H_
 #define MODULES_TASK_1_VOROBYOVA_A_SLEEPING_BARBER_SLEEPING_BARBER_H_
 
+#include <algorithm>
 #include <memory>
 
 typedef struct Message_s {
@@ -17,25 +18,24 @@ class Client {
  public:
   int place_in_line;
   explicit Client(int id_proc = -1, int id_line = 1, int id_barber = 0)
-      : id_proc(id_proc),
-        id_line(id_line), id_barber(id_barber) {
+      : id_proc(id_proc), id_line(id_line), id_barber(id_barber) {
     place_in_line = 0;
   }
   int onHold();
   void initiate();
   void cut();
   int getId_Proc() { return id_proc; }
-  //~Client() {
-  //  if (this != nullptr) {
-  //    id_proc = 0;
-  //    id_line = 0;
-  //    id_barber = 0;
-  //    place_in_line = 0;
-  //  }
-  //}
+  // ~Client() {
+  //   if (this != nullptr) {
+  //     id_proc = 0;
+  //     id_line = 0;
+  //     id_barber = 0;
+  //     place_in_line = 0;
+  //   }
+  // }
 };
 class Line {
-  Client *ClientLine;
+  Client* ClientLine;
   //  number of clients in general
   int length;
   //  current clients at the barbershop
@@ -66,7 +66,7 @@ class Line {
   int check_line();
   void initiate();
   // Copy constructor
-  Line(const Line &l1) {
+  Line(const Line& l1) {
     this->id_proc = l1.id_proc;
     this->length = l1.length;
     this->id_barber = l1.id_barber;
@@ -82,7 +82,7 @@ class Line {
     // assume *this manages a reusable resource, such as a heap-allocated buffer
     // mArray
     if (this->length != other.length) {  // resource in *this cannot be reused
-      delete[] ClientLine;         // release resource in *this
+      delete[] ClientLine;               // release resource in *this
       this->ClientLine = nullptr;
       this->length = 0;  // preserve invariants in case next line throws
       this->ClientLine =
