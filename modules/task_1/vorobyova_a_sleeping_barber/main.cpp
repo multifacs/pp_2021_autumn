@@ -1,8 +1,9 @@
 // Copyright 2018 Nesterov Alexander
 #include <gtest/gtest.h>
-#include <vector>
-#include "./sleeping_barber.h"
+
 #include <gtest-mpi-listener.hpp>
+
+#include "./sleeping_barber.h"
 
 TEST(Sleeping_Barber_MPI, Test1) {
   int size;
@@ -50,16 +51,16 @@ TEST(Sleeping_Barber_MPI, Test5) {
 }
 
 int main(int argc, char** argv) {
-    ::testing::InitGoogleTest(&argc, argv);
-    MPI_Init(&argc, &argv);
+  ::testing::InitGoogleTest(&argc, argv);
+  MPI_Init(&argc, &argv);
 
-    ::testing::AddGlobalTestEnvironment(new GTestMPIListener::MPIEnvironment);
-    ::testing::TestEventListeners& listeners =
-        ::testing::UnitTest::GetInstance()->listeners();
+  ::testing::AddGlobalTestEnvironment(new GTestMPIListener::MPIEnvironment);
+  ::testing::TestEventListeners& listeners =
+      ::testing::UnitTest::GetInstance()->listeners();
 
-    listeners.Release(listeners.default_result_printer());
-    listeners.Release(listeners.default_xml_generator());
+  listeners.Release(listeners.default_result_printer());
+  listeners.Release(listeners.default_xml_generator());
 
-    listeners.Append(new GTestMPIListener::MPIMinimalistPrinter);
-    return RUN_ALL_TESTS();
+  listeners.Append(new GTestMPIListener::MPIMinimalistPrinter);
+  return RUN_ALL_TESTS();
 }

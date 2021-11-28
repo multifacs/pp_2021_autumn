@@ -1,6 +1,6 @@
 // Copyright 2018 Nesterov Alexander
-#ifndef MODULES_TEST_TASKS_TEST_MPI_OPS_MPI_H_
-#define MODULES_TEST_TASKS_TEST_MPI_OPS_MPI_H_
+#ifndef MODULES_TASK_1_VOROBYOVA_A_SLEEPING_BARBER_SLEEPING_BARBER_H_
+#define MODULES_TASK_1_VOROBYOVA_A_SLEEPING_BARBER_SLEEPING_BARBER_H_
 
 typedef struct Message_s {
   int command;
@@ -65,4 +65,4 @@ class Barber {
 };
 void execute(int length);
 
-#endif  // MODULES_TEST_TASKS_TEST_MPI_OPS_MPI_H_
+#endif  // MODULES_TASK_1_VOROBYOVA_A_SLEEPING_BARBER_SLEEPING_BARBER_H_

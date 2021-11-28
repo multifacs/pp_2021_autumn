@@ -59,8 +59,8 @@ void Client::initiate() {
       default: {  // 1.information is sent to the line
         // 2.changes are made dictated by the barber
         MPI_Send(this, sizeof(Client), MPI_CHAR, id_line, 123, MPI_COMM_WORLD);
-        MPI_Recv(this, sizeof(Client), MPI_CHAR, id_barber, 10,
-                 MPI_COMM_WORLD, &status);
+        MPI_Recv(this, sizeof(Client), MPI_CHAR, id_barber, 10, MPI_COMM_WORLD,
+                 &status);
         printf("[C]-[%d] got their new haircut\n", id_proc);
         //
         MPI_Send(&message, sizeof(Message), MPI_CHAR, id_barber, 10,
