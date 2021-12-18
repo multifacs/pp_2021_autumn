@@ -102,7 +102,7 @@ void floatRadixSort(T **in, uint64_t N) {
   count = counters + 256 * i;
   floatRadixLastPass(i, N, (*in), out, count);
 
-  delete in;
+  delete (*in);
   (*in) = out;
   delete counters;
 }
