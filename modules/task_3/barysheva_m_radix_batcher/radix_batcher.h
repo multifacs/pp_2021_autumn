@@ -3,6 +3,7 @@
 #define MODULES_TASK_3_BARYSHEVA_M_RADIX_BATCHER_RADIX_BATCHER_H_
 
 #include <cstdint>
+#include <cstring>
 #include <utility>
 #include <vector>
 
