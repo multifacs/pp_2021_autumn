@@ -40,7 +40,8 @@ std::vector<double> merge(std::vector<std::vector<double>> vector_array) {
   while (vector_array.size() != 1) {
     for (int i = 0; i < static_cast<int>(vector_array.size() - 1); i++) {
       auto temp = vector_array[i];
-      temp.insert(temp.end(), vector_array[i + 1].begin(), vector_array[i + 1].end());
+      temp.insert(temp.end(), vector_array[i + 1].begin(),
+                  vector_array[i + 1].end());
       oddEvenMerge(&temp, temp.size());
       vector_array[i] = temp;
       vector_array.erase(vector_array.begin() + i + 1);
@@ -59,8 +60,8 @@ std::vector<double> RadixSortParallel(std::vector<double> vec, int size) {
 
   local_vec.resize(delta);
 
-  MPI_Scatter(vec.data(), delta, MPI_DOUBLE, local_vec.data(),
-              delta, MPI_DOUBLE, 0, MPI_COMM_WORLD);
+  MPI_Scatter(vec.data(), delta, MPI_DOUBLE, local_vec.data(), delta,
+              MPI_DOUBLE, 0, MPI_COMM_WORLD);
   double* data = local_vec.data();
   floatRadixSort<double>(&data, delta);
 
