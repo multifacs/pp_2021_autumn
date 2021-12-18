@@ -104,7 +104,7 @@ void floatRadixSort(T **in, uint64_t N) {
 
   delete (*in);
   (*in) = out;
-  delete counters;
+  delete[] counters;
 }
 
 #endif  // MODULES_TASK_3_BARYSHEVA_M_RADIX_BATCHER_RADIX_BATCHER_H_
