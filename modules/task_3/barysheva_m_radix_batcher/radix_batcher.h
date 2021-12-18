@@ -86,24 +86,24 @@ void floatRadixLastPass(uint16_t Offset, uint64_t N, T *source, T *dest,
 }
 
 template <class T>
-void floatRadixSort(T *in, uint64_t N) {
+void floatRadixSort(T **in, uint64_t N) {
   T *out = new T[N];
   uint16_t i;
 
   uint64_t *counters = new uint64_t[sizeof(T) * 256], *count;
-  createCounters(in, counters, N);
+  createCounters((*in), counters, N);
 
   for (i = 0; i < sizeof(T) - 1; i++) {
     count = counters + 256 * i;
     if (count[0] == N) continue;
-    radixPass(i, N, in, out, count);
-    std::swap(in, out);
+    radixPass(i, N, (*in), out, count);
+    std::swap((*in), out);
   }
   count = counters + 256 * i;
-  floatRadixLastPass(i, N, in, out, count);
+  floatRadixLastPass(i, N, (*in), out, count);
 
-  delete in;
-  in = out;
+  //delete in;
+  (*in) = out;
   delete counters;
 }
 

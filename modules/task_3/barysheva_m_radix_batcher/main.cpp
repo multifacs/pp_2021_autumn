@@ -15,7 +15,7 @@ TEST(RADIX_BATCHER, TEST_1) {
     if (rank == 0) {
       auto vec = getRandomVector(128);
       double* data = vec.data();
-      floatRadixSort<double>(data, 128);
+      floatRadixSort<double>(&data, 128);
       for (int i = 0; i < static_cast<int>(vec.size()) - 1; i++) {
         EXPECT_TRUE(vec[i] <= vec[i + 1]);
       }
@@ -95,7 +95,7 @@ TEST(RADIX_BATCHER, TEST_5) {
       double stime = end - start;
       double* data = vec_s.data();
       start = MPI_Wtime();
-      floatRadixSort<double>(data, pow(2, 8));
+      floatRadixSort<double>(&data, pow(2, 8));
       end = MPI_Wtime();
       double ptime = end - start;
       for (int i = 0; i < static_cast<int>(vec.size()); i++) {

@@ -62,7 +62,7 @@ std::vector<double> RadixSortParallel(std::vector<double> vec, int size) {
   MPI_Scatter(vec.data(), delta, MPI_DOUBLE, local_vec.data(),
               delta, MPI_DOUBLE, 0, MPI_COMM_WORLD);
   double* data = local_vec.data();
-  floatRadixSort<double>(data, delta);
+  floatRadixSort<double>(&data, delta);
 
   if (rank != 0) {
     MPI_Send(local_vec.data(), delta, MPI_DOUBLE, 0, 0, MPI_COMM_WORLD);
