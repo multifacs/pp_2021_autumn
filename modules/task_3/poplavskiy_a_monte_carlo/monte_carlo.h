@@ -1,6 +1,6 @@
 // Copyright 2021 Poplavskiy Anton
-#ifndef MODULES_TASK_3_PREOBRAZHENSKAYA_Y_MULTI_DIMENSION_MONTE_CARLO_MULTI_DIMENSION_MONTE_CARLO_H_
-#define MODULES_TASK_3_PREOBRAZHENSKAYA_Y_MULTI_DIMENSION_MONTE_CARLO_MULTI_DIMENSION_MONTE_CARLO_H_
+#ifndef MODULES_TASK_3_POPLAVSKIY_A_MONTE_CARLO_MONTE_CARLO_H_
+#define MODULES_TASK_3_POPLAVSKIY_A_MONTE_CARLO_MONTE_CARLO_H_
 #include <mpi.h>
 
 #include <array>
@@ -20,4 +20,4 @@ double getParallelIntegral(vector<array<double, 2>> a_b, int points,
 double getSequentialIntegral(vector<array<double, 2>> a_b, int number_of_points,
                              function<double(vector<double>)> f);
 
-#endif  // MODULES_TASK_3_PREOBRAZHENSKAYA_Y_MULTI_DIMENSION_MONTE_CARLO_MULTI_DIMENSION_MONTE_CARLO_H_
+#endif  // MODULES_TASK_3_POPLAVSKIY_A_MONTE_CARLO_MONTE_CARLO_H_

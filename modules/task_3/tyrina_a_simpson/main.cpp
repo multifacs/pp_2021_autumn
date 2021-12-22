@@ -36,7 +36,6 @@ TEST(SIMPSON_METHOD_MPI, TEST_1) {
     std::cout << "Sequential: " << stime << std::endl;
     std::cout << "Parallel: " << ptime << std::endl;
     std::cout << "Speedup: " << stime / ptime << std::endl;
-    
     ASSERT_NEAR(result, reference_result, eps);
   }
 }

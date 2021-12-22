@@ -3,8 +3,6 @@
 
 #include <mpi.h>
 
-using namespace std;
-
 double getSequentialTrapezoidal(int n, vector<pair<double, double>> limits,
                                 function<double(vector<double>)> f) {
   int integral_dim = static_cast<int>(limits.size());
@@ -36,7 +34,7 @@ double getParallelTrapezoidal(int n, vector<pair<double, double>> limits,
   MPI_Comm_rank(MPI_COMM_WORLD, &rank);
 
   int integral_dim = static_cast<int>(limits.size());
-  std::vector<double> h(n);
+  vector<double> h(n);
   int it_all = 1;
 
   for (int i = 0; i < integral_dim; i++) {

@@ -1,6 +1,6 @@
 // Copyright 2021 Tyrina Anastasia
-#ifndef MODULES_TASK_3_SHELEPIN_N_SIMPSON_SIMPSON_H_
-#define MODULES_TASK_3_SHELEPIN_N_SIMPSON_SIMPSON_H_
+#ifndef MODULES_TASK_3_TYRINA_A_SIMPSON_SIMPSON_H_
+#define MODULES_TASK_3_TYRINA_A_SIMPSON_SIMPSON_H_
 
 #include <algorithm>
 #include <functional>
@@ -17,4 +17,4 @@ double getSequentialSimpson(function<double(vector<double>)> func,
 double getParallelSimpson(function<double(vector<double>)> f,
                           vector<pair<double, double>> limits, int n);
 
-#endif  // MODULES_TASK_3_SHELEPIN_N_SIMPSON_SIMPSON_H_
+#endif  // MODULES_TASK_3_TYRINA_A_SIMPSON_SIMPSON_H_
