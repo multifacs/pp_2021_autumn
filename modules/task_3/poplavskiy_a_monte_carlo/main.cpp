@@ -70,6 +70,81 @@ TEST(Monte_Carlo_MPI, Test_Function_2) {
   }
 }
 
+TEST(Monte_Carlo_MPI, Test_Function_3) {
+  int rank;
+  MPI_Comm_rank(MPI_COMM_WORLD, &rank);
+  std::vector<array<double, 2>> a_b = {{0.0, 4.0}, {1.5, 2.5}, {1.0, 5.0}};
+  int points = 10000;
+
+  double start = MPI_Wtime();
+  double parallel_result = getParallelIntegral(a_b, points, f5);
+  double end = MPI_Wtime();
+
+  if (rank == 0) {
+    double ptime = end - start;
+
+    double start = MPI_Wtime();
+    double reference_result = getSequentialIntegral(a_b, points, f5);
+    double end = MPI_Wtime();
+    double stime = end - start;
+
+    std::cout << "Speedup: " << stime / ptime
+              << std::endl;
+    std::cout << "Error: " << abs(reference_result - parallel_result)
+              << std::endl;
+  }
+}
+
+TEST(Monte_Carlo_MPI, Test_Function_4) {
+  int rank;
+  MPI_Comm_rank(MPI_COMM_WORLD, &rank);
+  std::vector<array<double, 2>> a_b = {{0.0, 4.0}, {1.5, 2.5}, {1.0, 5.0}};
+  int points = 10000;
+
+  double start = MPI_Wtime();
+  double parallel_result = getParallelIntegral(a_b, points, f5);
+  double end = MPI_Wtime();
+
+  if (rank == 0) {
+    double ptime = end - start;
+
+    double start = MPI_Wtime();
+    double reference_result = getSequentialIntegral(a_b, points, f5);
+    double end = MPI_Wtime();
+    double stime = end - start;
+
+    std::cout << "Speedup: " << stime / ptime
+              << std::endl;
+    std::cout << "Error: " << abs(reference_result - parallel_result)
+              << std::endl;
+  }
+}
+
+TEST(Monte_Carlo_MPI, Test_Function_5) {
+  int rank;
+  MPI_Comm_rank(MPI_COMM_WORLD, &rank);
+  std::vector<array<double, 2>> a_b = {{0.0, 4.0}, {1.5, 2.5}, {1.0, 5.0}};
+  int points = 10000;
+
+  double start = MPI_Wtime();
+  double parallel_result = getParallelIntegral(a_b, points, f5);
+  double end = MPI_Wtime();
+
+  if (rank == 0) {
+    double ptime = end - start;
+
+    double start = MPI_Wtime();
+    double reference_result = getSequentialIntegral(a_b, points, f5);
+    double end = MPI_Wtime();
+    double stime = end - start;
+
+    std::cout << "Speedup: " << stime / ptime
+              << std::endl;
+    std::cout << "Error: " << abs(reference_result - parallel_result)
+              << std::endl;
+  }
+}
+
 int main(int argc, char** argv) {
   ::testing::InitGoogleTest(&argc, argv);
   MPI_Init(&argc, &argv);
