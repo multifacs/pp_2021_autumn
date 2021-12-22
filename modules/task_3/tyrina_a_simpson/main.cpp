@@ -40,6 +40,110 @@ TEST(SIMPSON_METHOD_MPI, TEST_1) {
   }
 }
 
+TEST(SIMPSON_METHOD_MPI, TEST_2) {
+  int rank;
+  MPI_Comm_rank(MPI_COMM_WORLD, &rank);
+
+  std::vector<std::pair<double, double>> limits({{4, 10}, {1, 2}});
+  int n = 100;
+
+  double start = MPI_Wtime();
+  double result = getParallelSimpson(func1, limits, n);
+  double end = MPI_Wtime();
+
+  if (rank == 0) {
+    double ptime = end - start;
+
+    start = MPI_Wtime();
+    double reference_result = getSequentialSimpson(func1, limits, n);
+    end = MPI_Wtime();
+    double stime = end - start;
+
+    std::cout << "Sequential: " << stime << std::endl;
+    std::cout << "Parallel: " << ptime << std::endl;
+    std::cout << "Speedup: " << stime / ptime << std::endl;
+    ASSERT_NEAR(result, reference_result, eps);
+  }
+}
+
+TEST(SIMPSON_METHOD_MPI, TEST_3) {
+  int rank;
+  MPI_Comm_rank(MPI_COMM_WORLD, &rank);
+
+  std::vector<std::pair<double, double>> limits({{4, 10}, {1, 2}});
+  int n = 100;
+
+  double start = MPI_Wtime();
+  double result = getParallelSimpson(func1, limits, n);
+  double end = MPI_Wtime();
+
+  if (rank == 0) {
+    double ptime = end - start;
+
+    start = MPI_Wtime();
+    double reference_result = getSequentialSimpson(func1, limits, n);
+    end = MPI_Wtime();
+    double stime = end - start;
+
+    std::cout << "Sequential: " << stime << std::endl;
+    std::cout << "Parallel: " << ptime << std::endl;
+    std::cout << "Speedup: " << stime / ptime << std::endl;
+    ASSERT_NEAR(result, reference_result, eps);
+  }
+}
+
+TEST(SIMPSON_METHOD_MPI, TEST_4) {
+  int rank;
+  MPI_Comm_rank(MPI_COMM_WORLD, &rank);
+
+  std::vector<std::pair<double, double>> limits({{4, 10}, {1, 2}});
+  int n = 100;
+
+  double start = MPI_Wtime();
+  double result = getParallelSimpson(func1, limits, n);
+  double end = MPI_Wtime();
+
+  if (rank == 0) {
+    double ptime = end - start;
+
+    start = MPI_Wtime();
+    double reference_result = getSequentialSimpson(func1, limits, n);
+    end = MPI_Wtime();
+    double stime = end - start;
+
+    std::cout << "Sequential: " << stime << std::endl;
+    std::cout << "Parallel: " << ptime << std::endl;
+    std::cout << "Speedup: " << stime / ptime << std::endl;
+    ASSERT_NEAR(result, reference_result, eps);
+  }
+}
+
+TEST(SIMPSON_METHOD_MPI, TEST_5) {
+  int rank;
+  MPI_Comm_rank(MPI_COMM_WORLD, &rank);
+
+  std::vector<std::pair<double, double>> limits({{4, 10}, {1, 2}});
+  int n = 100;
+
+  double start = MPI_Wtime();
+  double result = getParallelSimpson(func1, limits, n);
+  double end = MPI_Wtime();
+
+  if (rank == 0) {
+    double ptime = end - start;
+
+    start = MPI_Wtime();
+    double reference_result = getSequentialSimpson(func1, limits, n);
+    end = MPI_Wtime();
+    double stime = end - start;
+
+    std::cout << "Sequential: " << stime << std::endl;
+    std::cout << "Parallel: " << ptime << std::endl;
+    std::cout << "Speedup: " << stime / ptime << std::endl;
+    ASSERT_NEAR(result, reference_result, eps);
+  }
+}
+
 int main(int argc, char** argv) {
   ::testing::InitGoogleTest(&argc, argv);
   MPI_Init(&argc, &argv);
