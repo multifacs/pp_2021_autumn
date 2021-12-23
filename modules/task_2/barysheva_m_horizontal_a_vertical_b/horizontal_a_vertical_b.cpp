@@ -70,7 +70,7 @@ vector<int> ParallelMatrixMultiplication(vector<int> A, vector<int> B, int A_n,
       }
 
       vector<int> b_columns(delta * B_n, 0);
-      for (int i = 0; i < b_columns.size(); i++) {
+      for (int i = 0; i < static_cast<int>(b_columns.size()); i++) {
         int index_n = i % delta;
         int index_m = (i / delta) * B_m;
 
@@ -139,7 +139,7 @@ vector<int> ParallelMatrixMultiplication(vector<int> A, vector<int> B, int A_n,
       index_matrix = (rank * delta + rem) * A_n;
     }
 
-    for (int j = 0; j < temp.size(); j++) {
+    for (int j = 0; j < static_cast<int>(temp.size()); j++) {
       int index_n = local_b[local_x] + j % local_B_m;
       int index_m = (j / local_B_m) * A_n;
 
