@@ -3,9 +3,9 @@
 
 #include <mpi.h>
 
-#include <algorithm>
 #include <cmath>
 #include <ctime>
+#include <algorithm>
 #include <random>
 #include <utility>
 #include <vector>
