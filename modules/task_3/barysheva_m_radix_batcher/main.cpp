@@ -2,8 +2,8 @@
 #include <gtest/gtest.h>
 
 #include <cmath>
-#include <gtest-mpi-listener.hpp>
 #include <vector>
+#include <gtest-mpi-listener.hpp>
 
 #include "./radix_batcher.h"
 
