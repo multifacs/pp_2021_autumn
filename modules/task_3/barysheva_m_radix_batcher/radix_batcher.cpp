@@ -54,13 +54,12 @@ void RadixSortParallel(double** arr, int size_v) {
   double* other;
   int m = size_v, n = size_v;
   int rank, size;
-  int delta, i, step = 1;
+  int delta, step = 1;
 
   MPI_Comm_rank(MPI_COMM_WORLD, &rank);
   MPI_Comm_size(MPI_COMM_WORLD, &size);
 
   if (rank == 0) {
-    int r;
     delta = n / size;
 
     MPI_Bcast(&delta, 1, MPI_INT, 0, MPI_COMM_WORLD);
